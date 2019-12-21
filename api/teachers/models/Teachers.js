@@ -5,6 +5,17 @@
  */
 
 module.exports = {
+
+  afterSave: async (model, result) => {
+    await strapi.plugins['email'].services.email.send({
+      to: 'juniyadi94@gmail.com',
+      from: 'admin@gdi.pojokan.io',
+      replyTo: 'admin@gdi.pojokan.io',
+      subject: 'Use strapi email provider successfully',
+      text: 'Hello world!',
+      html: 'Hello world!',
+    });
+  }
   // Before saving a value.
   // Fired before an `insert` or `update` query.
   // beforeSave: async (model) => {},
